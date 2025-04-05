@@ -1,6 +1,7 @@
 import { Text, View, Pressable } from "react-native";
 import { StyleSheet } from "react-native";
 import TrackJobLogo from "../../assets/images/trackjob-logo.svg";
+import { Router, router } from "expo-router";
 
 export default function Introduction() {
   return (
@@ -13,7 +14,7 @@ export default function Introduction() {
       <Text style={styles.trackJobDescription}>
         Keep track of your hiring journey
       </Text>
-      <Pressable>
+      <Pressable onPress={() => router.replace("/Features")}>
         <View style={styles.startButtonContainer}>
           <Text style={styles.startButtonText}>Start</Text>
         </View>
