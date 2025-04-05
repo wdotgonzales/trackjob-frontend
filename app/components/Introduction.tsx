@@ -2,7 +2,7 @@ import { Text, View, Pressable } from "react-native";
 import { StyleSheet } from "react-native";
 import TrackJobLogo from "../../assets/images/trackjob-logo.svg";
 
-export default function IntroductionPage() {
+export default function Introduction() {
   return (
     <View style={styles.mainContainer}>
       <TrackJobLogo width={270} style={styles.trackJobLogo} />

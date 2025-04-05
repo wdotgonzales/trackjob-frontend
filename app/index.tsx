@@ -1,4 +1,4 @@
-import IntroductionPage from "./components/IntroductionPage";
+import Introduction from "./components/Introduction";
 export default function Index() {
-  return <IntroductionPage />;
+  return <Introduction />;
 }
