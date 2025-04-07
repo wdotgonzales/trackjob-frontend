@@ -20,12 +20,13 @@ export default function Feature() {
   }, [contents]);
 
   useEffect(() => {
+    fadeAnim.setValue(0);
     Animated.timing(fadeAnim, {
       toValue: 1,
       duration: 500,
       useNativeDriver: true,
     }).start();
-  }, [fadeAnim]);
+  }, [fadeAnim, contents]);
 
   return (
     <View style={styles.mainContainer}>
