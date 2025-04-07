@@ -1,10 +1,10 @@
 import React from "react";
 import { Text, View, Pressable, Animated } from "react-native";
 import { StyleSheet } from "react-native";
-import { Router, router } from "expo-router";
 import { useState, useEffect, useRef } from "react";
 import featureContents from "@/app/constants/featureContents";
 import FeaturesSelectBars from "../components/FeaturesSelectBars";
+import FeaturesButton from "../components/FeaturesButton";
 
 export default function Feature() {
   const [contents, setContents] = useState(featureContents);
@@ -53,7 +53,12 @@ export default function Feature() {
           </>
         )}
       </View>
-      <View style={styles.buttonContainer}></View>
+      <View style={styles.buttonContainer}>
+        <FeaturesButton
+          contents={contents}
+          setContents={setContents}
+        />
+      </View>
     </View>
   );
 }
@@ -82,6 +87,6 @@ const styles = StyleSheet.create({
   },
 
   buttonContainer: {
-    padding: 8,
+    padding: 15,
   },
 });

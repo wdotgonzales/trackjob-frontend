@@ -1,6 +1,7 @@
 import { View, Text, StyleSheet, Pressable } from "react-native";
 
-export default function FeaturesSelectBars({ contents, setContents }) { 
+export default function FeaturesSelectBars({ contents, setContents }) {
+
   const showChosenContent = (id) => {
     const updatedContentsVisiblity = contents.map((item) => ({
       ...item,
@@ -27,7 +28,7 @@ export default function FeaturesSelectBars({ contents, setContents }) {
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: "row", // Horizontal layout
+    flexDirection: "row",
     gap: 3,
   },
 
@@ -42,6 +43,6 @@ const styles = StyleSheet.create({
 
   selectedBar: {
     backgroundColor: "#FF9700",
-    width: 120, // This one is wider
+    width: 120,
   },
 });
