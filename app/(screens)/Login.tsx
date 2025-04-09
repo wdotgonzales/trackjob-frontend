@@ -75,7 +75,7 @@ export default function Login() {
         <View style={{ marginTop: 25 }}>
           <ButtonWithLogo
             logo={<AntDesign name="google" size={24} color="#F97009" />}
-            title={"Continue With Logo"}
+            title={"Continue With Google"}
             style={{ backgroundColor: "white", color: "black" }}
           />
         </View>
