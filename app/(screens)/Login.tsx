@@ -4,11 +4,59 @@ import Input from "../components/Input";
 import Button from "../components/Button";
 import ButtonWithLogo from "../components/ButtonWithLogo";
 import AntDesign from "@expo/vector-icons/AntDesign";
-import { useState } from "react";
+import Toast from "react-native-toast-message";
+import { useState, useEffect } from "react";
+import { useLogin } from "@/app/hooks/useLogin";
+import isValidEmail from "@/app/utils/isValidEmail";
+import LoadingOverlay from "../components/LoadingOverlay";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { login, data, isLoading, error, statusCode } = useLogin();
+
+  const handleSignIn = async () => {
+    if (email === "" || password === "") {
+      Toast.show({
+        type: "error",
+        text1: "Error",
+        text2: "Please enter email and password!",
+      });
+      return;
+    }
+
+    if (!isValidEmail(email)) {
+      Toast.show({
+        type: "error",
+        text1: "Error",
+        text2: "Please enter a valid email!",
+      });
+      return;
+    }
+
+    await login(email, password);
+  };
+
+  useEffect(() => {
+    if (statusCode == null || isLoading !== false) return;
+
+    if (statusCode !== 200) {
+      Toast.show({
+        type: "error",
+        text1: "Error",
+        text2: error || "Login failed!",
+      });
+      return;
+    }
+
+    Toast.show({
+      type: "success",
+      text1: "Success",
+      text2: "You are now signed in!",
+    });
+
+    const { token } = data;
+  }, [login, statusCode, isLoading]);
 
   return (
     <View style={styles.mainContainer}>
@@ -57,7 +105,7 @@ export default function Login() {
         </View>
 
         <View style={{ marginTop: 30 }}>
-          <Button title={"Sign in"} />
+          <Button title={"Sign in"} onPress={handleSignIn} />
         </View>
 
         <View style={[styles.createNewAccountTextContainer, { marginTop: 30 }]}>
@@ -80,6 +128,9 @@ export default function Login() {
           />
         </View>
       </View>
+
+      <Toast />
+      {isLoading == true && <LoadingOverlay />}
     </View>
   );
 }
