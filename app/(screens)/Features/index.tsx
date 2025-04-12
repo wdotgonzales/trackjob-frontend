@@ -3,8 +3,8 @@ import { Text, View, Pressable, Animated } from "react-native";
 import { StyleSheet } from "react-native";
 import { useState, useEffect, useRef } from "react";
 import featureContents from "@/app/constants/featureContents";
-import FeaturesSelectBars from "../components/FeaturesSelectBars";
-import FeaturesButton from "../components/FeaturesButton";
+import FeaturesSelectBars from "@/app/components/FeaturesSelectBars";
+import FeaturesButton from "@/app/components/FeaturesButton";
 
 export default function Feature() {
   const [contents, setContents] = useState(featureContents);
@@ -54,10 +54,7 @@ export default function Feature() {
         )}
       </View>
       <View style={styles.buttonContainer}>
-        <FeaturesButton
-          contents={contents}
-          setContents={setContents}
-        />
+        <FeaturesButton contents={contents} setContents={setContents} />
       </View>
     </View>
   );

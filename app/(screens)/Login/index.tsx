@@ -1,14 +1,14 @@
 import { View, Text, StyleSheet, Pressable } from "react-native";
-import TrackJobLogo from "../../assets/images/trackjob-logo.svg";
-import Input from "../components/Input";
-import Button from "../components/Button";
-import ButtonWithLogo from "../components/ButtonWithLogo";
+import TrackJobLogo from "@/assets/images/trackjob-logo.svg";
+import Input from "@/app/components/Input";
+import Button from "@/app/components/Button";
+import ButtonWithLogo from "@/app/components/ButtonWithLogo";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import Toast from "react-native-toast-message";
 import { useState, useEffect } from "react";
 import { useLogin } from "@/app/hooks/useLogin";
 import isValidEmail from "@/app/utils/isValidEmail";
-import LoadingOverlay from "../components/LoadingOverlay";
+import LoadingOverlay from "@/app/components/LoadingOverlay";
 import { useRouter } from "expo-router";
 import { useSecureStorage } from "@/app/hooks/useSecureStorage";
 

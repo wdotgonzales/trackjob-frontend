@@ -1,6 +1,6 @@
 import { Text, View, Pressable } from "react-native";
 import { StyleSheet } from "react-native";
-import TrackJobLogo from "../../assets/images/trackjob-logo.svg";
+import TrackJobLogo from "@/assets/images/trackjob-logo.svg";
 import { router } from "expo-router";
 
 export default function Introduction() {
