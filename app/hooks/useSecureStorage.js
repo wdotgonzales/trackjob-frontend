@@ -39,5 +39,20 @@ export function useSecureStorage() {
     [isWeb]
   );
 
-  return { saveToken, getToken };
+  const deleteToken = useCallback(
+    async (key) => {
+      try {
+        if (isWeb) {
+          await AsyncStorage.removeItem(key);
+        } else {
+          await SecureStore.deleteItemAsync(key);
+        }
+      } catch (error) {
+        console.error("Error deleting data:", error);
+      }
+    },
+    [isWeb]
+  );
+
+  return { saveToken, getToken, deleteToken };
 }
