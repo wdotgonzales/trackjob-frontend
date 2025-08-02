@@ -5,7 +5,11 @@ import { useState } from "react";
 import CustomButton from "../../components/CustomButton";
 import GoogleButton from "../../components/GoogleButton";
 
+import { useSelector } from "react-redux";
+
 const LoginScreen = () => {
+    const auth = useSelector((state) => state.auth.isAuthenticated);
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     return (
@@ -68,7 +72,7 @@ const LoginScreen = () => {
 
                     <CustomButton 
                         title="Sign In" 
-                        onPress={() => console.log(email, password)}
+                        onPress={() => console.log(auth)}
                         style={{
                             backgroundColor: "#052731",
                             marginTop: 30,

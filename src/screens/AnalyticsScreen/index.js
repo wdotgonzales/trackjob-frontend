@@ -1,14 +1,14 @@
 import { View, Text, StyleSheet } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 
-const SettingsScreen = () => {
+const AnalyticsScreen = () => {
     return (
         <SafeAreaView>
             <View>
-                <Text>SettingsScreen Screen</Text>
+                <Text>Analytics Screen</Text>
             </View>
         </SafeAreaView>
     )
 }
 
-export default SettingsScreen
+export default AnalyticsScreen
