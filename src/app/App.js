@@ -8,8 +8,8 @@ export default function App() {
     <>
       <Provider store={store}>
         <AppNavigator/>
+        <Toast />
       </Provider>
-      <Toast />
     </>
   )
 }
