@@ -6,7 +6,7 @@ import {
 } from 'react-native';
 
 const CustomLoader = ({
-  visible = true,
+  visible = true, // Keep this for API compatibility, but we'll ignore it
   size = 60,
   strokeWidth = 4,
   color = '#FF0000', // YouTube red
@@ -18,43 +18,43 @@ const CustomLoader = ({
   const scaleValue = useRef(new Animated.Value(0.8)).current;
   
   useEffect(() => {
-    if (visible) {
-      // Rotation animation
-      const rotateAnimation = Animated.loop(
-        Animated.timing(rotateValue, {
-          toValue: 1,
-          duration: animationDuration,
+    // Always start animations regardless of visible prop
+    // Rotation animation
+    const rotateAnimation = Animated.loop(
+      Animated.timing(rotateValue, {
+        toValue: 1,
+        duration: animationDuration,
+        useNativeDriver: true,
+      })
+    );
+
+    // Pulse animation
+    const pulseAnimation = Animated.loop(
+      Animated.sequence([
+        Animated.timing(scaleValue, {
+          toValue: 1.1,
+          duration: animationDuration / 2,
           useNativeDriver: true,
-        })
-      );
+        }),
+        Animated.timing(scaleValue, {
+          toValue: 0.8,
+          duration: animationDuration / 2,
+          useNativeDriver: true,
+        }),
+      ])
+    );
 
-      // Pulse animation
-      const pulseAnimation = Animated.loop(
-        Animated.sequence([
-          Animated.timing(scaleValue, {
-            toValue: 1.1,
-            duration: animationDuration / 2,
-            useNativeDriver: true,
-          }),
-          Animated.timing(scaleValue, {
-            toValue: 0.8,
-            duration: animationDuration / 2,
-            useNativeDriver: true,
-          }),
-        ])
-      );
+    rotateAnimation.start();
+    pulseAnimation.start();
 
-      rotateAnimation.start();
-      pulseAnimation.start();
+    return () => {
+      rotateAnimation.stop();
+      pulseAnimation.stop();
+    };
+  }, [animationDuration]); // Removed 'visible' from dependency array
 
-      return () => {
-        rotateAnimation.stop();
-        pulseAnimation.stop();
-      };
-    }
-  }, [visible, animationDuration]);
-
-  if (!visible) return null;
+  // Removed the conditional return - loader is always visible now
+  // if (!visible) return null;
 
   const rotation = rotateValue.interpolate({
     inputRange: [0, 1],
