@@ -3,25 +3,27 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import StartScreen from "../screens/StartScreen"
 import FeatureScreen from "../screens/FeaturesScreen"
 import LoginScreen from "../screens/LoginScreen"
-
 import { useSelector } from "react-redux";
 import AuthenticatedTabNavigator from "./AuthenticatedTabNavigator"
-import CustomLoader from "../components/CustomLoader"
+import { useEffect } from "react";
+import { useDispatch } from "react-redux"
+import { checkAuth } from "../features/authentication/authSlice"
 
 const Stack = createNativeStackNavigator()
 
 const AppNavigator = () => {
-
-    // This is only temporary, for now this will dictate if user is authenticated or not.
-    const auth = useSelector((state) => state.auth.isAuthenticated);
-
-    const isVisible = useSelector((state) => state.loader.isVisible);
+    const dispatch = useDispatch();
+    const { isAuthenticated } = useSelector((state) => state.auth);
+    useEffect(() => {
+        dispatch(checkAuth());
+        console.log(isAuthenticated)
+    }, []);
 
     return (
         <>
             <NavigationContainer>
                 <Stack.Navigator screenOptions={{ headerShown: false }}>
-                    {auth ? (
+                    {isAuthenticated ? (
                         // If user is authenticated, show the tab navigator
                         <Stack.Screen 
                             name="AuthenticatedApp" 
@@ -37,14 +39,6 @@ const AppNavigator = () => {
                     )}
                 </Stack.Navigator>
             </NavigationContainer>
-
-
-            <CustomLoader 
-                visible={isVisible}
-                size={80}
-                color="#F97009"
-                backgroundColor="rgba(255, 255, 255, 0.3)"
-            />
         </>
     )
 }
