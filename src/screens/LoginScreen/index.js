@@ -12,6 +12,7 @@ import { login, setAuthLoading } from "../../features/authentication/authSlice";
 import { showToast } from "../../components/CustomToaster";
 import { useSelector } from "react-redux";
 import CustomLoader from "../../components/CustomLoader";
+import useGoogleAuth from "../../hooks/useGoogleAuth";
 
 const LoginScreen = () => {
     // State for form inputs
@@ -21,6 +22,40 @@ const LoginScreen = () => {
     // Redux setup
     const dispatch = useDispatch();
     const { isLoading } = useSelector((state) => state.auth);
+
+    // Google Auth hook
+    const { signInWithGoogle } = useGoogleAuth();
+
+    // Reusable authentication handler
+    const handleAuthentication = async (endpoint, payload) => {
+        dispatch(setAuthLoading(true));
+
+        try {
+            const response = await httpClient.post(endpoint, payload, { skipAuth: true });
+            const result = await response.json();
+
+            if (response.ok) {
+                // Save access token and show success message
+                await AsyncStorage.setItem('accessToken', result.data.access);
+                showToast('success', 'Success', result.message);
+                
+                // Delay before updating auth state for better UX
+                setTimeout(() => {
+                    dispatch(login());
+                }, 2000);
+            } else {
+                // Show error message from server
+                showToast('error', 'Error', result.message);
+            }
+        } catch (error) {
+            // Handle network or other errors
+            showToast('error', 'Error', 'Contact Administrator');
+            console.error('Authentication failed:', error);
+        } finally {
+            // Stop loading state
+            dispatch(setAuthLoading(false));
+        }
+    };
 
     // Validate user inputs before submission
     const validateInputs = () => {
@@ -41,37 +76,22 @@ const LoginScreen = () => {
     const handleLogin = async () => {
         if (!validateInputs()) return;
         
-        // Start loading state
-        dispatch(setAuthLoading(true));
-
-        try {
-            // Make API call to login endpoint
-            const response = await httpClient.post('login/', { email, password }, { skipAuth: true });
-            const result = await response.json();
-
-            if (response.ok) {
-                // Save access token and show success message
-                await AsyncStorage.setItem('accessToken', result.data.access);
-                showToast('success', 'Success', result.message);
-                
-                // Delay before updating auth state for better UX
-                setTimeout(() => {
-                    dispatch(login());
-                }, 2000);
-            } else {
-                // Show error message from server
-                showToast('error', 'Error', result.message);
-            }
-        } catch (error) {
-            // Handle network or other errors
-            showToast('error', 'Error', 'Contact Administrator');
-            console.error('Login failed:', error);
-        } finally {
-            // Stop loading state
-            dispatch(setAuthLoading(false));
-        }
+        await handleAuthentication('login/', { email, password });
     };
 
+    // Handle Google authentication
+    const handleGoogleAuth = async () => {
+        try {
+            const user = await signInWithGoogle();
+            console.log(user.email);
+            
+            await handleAuthentication('login-email-only/', { email: user.email });
+        } catch (error) {
+            console.error('Google sign-in failed:', error);
+            showToast('error', 'Error', 'Google sign-in failed');
+        }
+    };
+ 
     return (
         <>
             <View style={styles.outerContainer}>
@@ -173,7 +193,7 @@ const LoginScreen = () => {
                         {/* Google sign in button */}
                         <GoogleButton 
                             title="Sign in with Google" 
-                            onPress={() => alert("google me btich")} 
+                            onPress={handleGoogleAuth} 
                             disabled={isLoading}
                             style={{
                                 shadowColor: '#000',
@@ -184,7 +204,7 @@ const LoginScreen = () => {
                                 shadowOpacity: 0.25,
                                 shadowRadius: 3.84,
                                 elevation: 5,
-                                opacity: isLoading ? 0.7 : 1,
+                                opacity: (isLoading) ? 0.7 : 1,
                             }}
                         />
                     </View>
@@ -192,13 +212,13 @@ const LoginScreen = () => {
             </View>
             
             {/* Loading overlay when login is in progress */}
-            {isLoading && (
+            {(isLoading) && (
                 <CustomLoader 
                     size={60}
-                    color="#F97009" // Orange color from design
+                    color="#F97009"
                     backgroundColor="rgba(255, 255, 255, 0.3)"
                     style={{
-                        backgroundColor: 'rgba(0, 0, 0, 0.5)' // Semi-transparent overlay
+                        backgroundColor: 'rgba(0, 0, 0, 0.5)'
                     }}
                 />
             )}
@@ -211,7 +231,7 @@ export default LoginScreen;
 const styles = StyleSheet.create({
     outerContainer: {
         flex: 1,
-        backgroundColor: '#054B63', // Dark blue background
+        backgroundColor: '#054B63',
     },
 
     headerContainer: {
@@ -274,5 +294,4 @@ const styles = StyleSheet.create({
         color: "#F97009",
         marginBlock: 15,
     }
-    
 })
