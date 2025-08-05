@@ -15,24 +15,27 @@ export default {
       backgroundColor: "#ffffff"
     },
     ios: {
-      supportsTablet: true
+      supportsTablet: true,
+      bundleIdentifier: "com.TrackJob.TrackJob"
     },
     android: {
+      package: "com.TrackJob.TrackJob", // ✅ Add this line
       adaptiveIcon: {
         foregroundImage: "./assets/adaptive-icon.png",
         backgroundColor: "#ffffff"
       },
-      edgeToEdgeEnabled: true
+      edgeToEdgeEnabled: true,
+      usesCleartextTraffic: true,
+      permissions: ["INTERNET", "ACCESS_NETWORK_STATE"]
     },
     web: {
       favicon: "./assets/favicon.png"
     },
-    // Environment variables accessible in your app
     extra: {
       baseApiUrl: process.env.BASE_API_URL,
-      // apiKey: process.env.API_KEY,
-      // environment: process.env.ENVIRONMENT,
-      // Add any other environment variables you need
+      eas: {
+        projectId: "4dcdfa4f-9239-427d-9a4b-721f65632d26"
+      }
     }
   }
 };
