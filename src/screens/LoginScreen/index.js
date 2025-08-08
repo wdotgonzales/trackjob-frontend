@@ -14,7 +14,7 @@ import { useSelector } from "react-redux";
 import CustomLoader from "../../components/CustomLoader";
 import useGoogleAuth from "../../hooks/useGoogleAuth";
 
-const LoginScreen = () => {
+const LoginScreen = ({ navigation }) => {
     // State for form inputs
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -121,7 +121,7 @@ const LoginScreen = () => {
                             keyboardType="email-address"
                             style={{
                                 backgroundColor: "white",
-                                height: 50,
+                                height: 42,
                                 shadowColor: '#000',
                                 shadowOffset: {
                                 width: 0,
@@ -141,7 +141,7 @@ const LoginScreen = () => {
                             secureTextEntry={true}
                             style={{
                                 backgroundColor: "white",
-                                height: 50,
+                                height: 42,
                                 shadowColor: '#000',
                                 shadowOffset: {
                                 width: 0,
@@ -151,7 +151,7 @@ const LoginScreen = () => {
                                 shadowRadius: 3.84,
                                 elevation: 5,
                             }}
-                        />
+                        />  
 
                         {/* Forgot password link */}
                         <Text style={styles.textForgotYourPassword}>Forgot Your Password?</Text>
@@ -164,7 +164,7 @@ const LoginScreen = () => {
                             style={{
                                 backgroundColor: "#052731", 
                                 marginTop: 30,
-                                height: 50,
+                                height: 45,
                                 shadowColor: '#000',
                                 shadowOffset: {
                                 width: 0,
@@ -178,7 +178,7 @@ const LoginScreen = () => {
                         />
 
                         {/* Create account link */}
-                        <Text style={styles.textCreateNewAccount}>Create New Account</Text>
+                        <Text onPress={() => navigation.navigate('Register')} style={styles.textCreateNewAccount}>Create New Account</Text>
 
                         {/* Divider line */}
                         <View style={{
@@ -195,6 +195,7 @@ const LoginScreen = () => {
                             title="Sign in with Google" 
                             onPress={handleGoogleAuth} 
                             disabled={isLoading}
+                            size="medium"
                             style={{
                                 shadowColor: '#000',
                                 shadowOffset: {
@@ -239,15 +240,15 @@ const styles = StyleSheet.create({
     },
 
     logoImage: {
-        height: 160,
-        width: 175,
+        height: 130,
+        width: 155,
         marginTop: 50,
         marginRight: 15,
     },
 
     logoImageText: {
-        width: 160,
-        height: 26,
+        width: 150,
+        height: 24,
         marginTop: 15
     },
 
@@ -255,7 +256,7 @@ const styles = StyleSheet.create({
         marginTop: 10,
         fontWeight: "300",
         color: "white",
-        fontSize: 17,
+        fontSize: 14,
     },
 
     bodyContainer: {
@@ -265,13 +266,13 @@ const styles = StyleSheet.create({
 
     textLoginHere: {
         color: "white",
-        fontSize: 18,
+        fontSize: 17,
         fontWeight: "bold",
         marginBottom: 9,
     },
 
     textForgotYourPassword: {
-        fontSize: 16,
+        fontSize: 14,
         color: "white",
         fontWeight: "bold",
         textAlign: "right",
@@ -279,19 +280,19 @@ const styles = StyleSheet.create({
     },
 
     textCreateNewAccount: {
-        fontSize: 16,
+        fontSize: 14,
         fontWeight: "bold",
         color: "white",
         textAlign: "center",
-        marginTop: 30,
-        marginBottom: 20,
+        marginBlock: 20,
     },
 
     textContinueWith: {
         textAlign: "center",
         fontWeight: "bold",
-        fontSize: 16,
+        fontSize: 14,
         color: "#F97009",
-        marginBlock: 15,
+        marginTop: 10,
+        marginBottom: 15 ,
     }
 })
