@@ -31,6 +31,7 @@ const SettingsScreen = () => {
         setRefreshing(true);
         try {
             await dispatch(fetchUserProfile());
+            console.log(data.profile_url)
         } finally {
             setRefreshing(false);
         }
