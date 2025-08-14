@@ -1,0 +1,148 @@
+// Import all images at the top
+import logo1 from "../../../../assets/job_application_status_logos/job-app-status-logo-1.png";
+import logo2 from "../../../../assets/job_application_status_logos/job-app-status-logo-2.png";
+import logo3 from "../../../../assets/job_application_status_logos/job-app-status-logo-3.png";
+import logo4 from "../../../../assets/job_application_status_logos/job-app-status-logo-4.png";
+import logo5 from "../../../../assets/job_application_status_logos/job-app-status-logo-5.png";
+import logo6 from "../../../../assets/job_application_status_logos/job-app-status-logo-6.png";
+import logo7 from "../../../../assets/job_application_status_logos/job-app-status-logo-7.png";
+import logo8 from "../../../../assets/job_application_status_logos/job-app-status-logo-8.png";
+import logo9 from "../../../../assets/job_application_status_logos/job-app-status-logo-9.png";
+
+// Create image map
+const logoMap = {
+    1: logo1,
+    2: logo2,
+    3: logo3,
+    4: logo4,
+    5: logo5,
+    6: logo6,
+    7: logo7,
+    8: logo8,
+    9: logo9,
+};
+
+export const jobApplicationStatusIconData = [
+    {
+        id: 1,
+        label: "",
+        shortenLabel: "Default",
+        description: "All type of job application.",
+        logoUrl: logoMap[1],
+        isDefault: true,
+        isActive: true,
+        bacgroundColor: "#054B63",
+        color: "#FFFFFF",
+        iconWidth: 48,
+        iconHeight: 50,
+        textMarginTop: 2,
+    },
+    {
+        id: 2,
+        label: "Applied",
+        shortenLabel: "Applied",
+        description: "You submitted your application.",
+        logoUrl: logoMap[2],
+        isDefault: false,
+        isActive: false,
+        bacgroundColor: "#0055FF",
+        color: "#FFFFFF",
+        iconWidth: 45,
+        iconHeight: 40,
+        textMarginTop: 6,
+
+    },
+    {
+        id: 3,
+        label: "Rejected",
+        shortenLabel: "Rejected",
+        description: "You were not selected for the position.",
+        logoUrl: logoMap[3],
+        isDefault: false,
+        isActive: false,
+        bacgroundColor: "#FF0000",
+        color: "#FFFFFF",
+        iconWidth: 38,
+        iconHeight: 35,
+        textMarginTop: 6,
+
+    },
+    {
+        id: 4,
+        label: "Ghosted",
+        shortenLabel: "Ghosted",
+        description: "No response from the employer after follow-ups.",
+        logoUrl: logoMap[4],
+        isDefault: false,
+        isActive: false,
+        bacgroundColor: "#262626",
+        color: "#FFFFFF",
+        iconWidth: 40,
+        iconHeight: 40,
+    },
+    {
+        id: 5,
+        label: "Under Review",
+        shortenLabel: "U.R.",
+        description: "Your application is being evaluated.",
+        logoUrl: logoMap[5],
+        isDefault: false,
+        isActive: false,
+        bacgroundColor: "#FFC107",
+        color: "#000000",
+        iconWidth: 42,
+        iconHeight: 42,
+    },
+    {
+        id: 6,
+        label: "Offer Received",
+        shortenLabel: "O.R.",
+        description: "You received a job offer.",
+        logoUrl: logoMap[6],
+        isDefault: false,
+        isActive: false,
+        bacgroundColor: "#388E3C",
+        color: "#FFFFFF",
+        iconWidth: 50,
+        iconHeight: 45,
+    },
+    {
+        id: 7,
+        label: "Interview Scheduled",
+        shortenLabel: "I.S.",
+        description: "An interview has been scheduled.",
+        logoUrl: logoMap[7],
+        isDefault: false,
+        isActive: false,
+        bacgroundColor: "#FB8C00",
+        color: "#000000",
+        iconWidth: 42,
+        iconHeight: 42,
+    },
+    {
+        id: 8,
+        label: "Closed/Withdraw",
+        shortenLabel: "C/W",
+        description: "You withdrew or the company closed the job opening.",
+        logoUrl: logoMap[8],
+        isDefault: false,
+        isActive: false,
+        bacgroundColor: "#9E9E9E",
+        color: "#000000",
+        iconWidth: 48,
+        iconHeight: 48,
+    },
+    {
+        id: 9,
+        label: "Accepted Offer",
+        shortenLabel: "A.O.",
+        description: "You accepted the offer.",
+        logoUrl: logoMap[9],
+        isDefault: false,
+        isActive: false,
+        bacgroundColor: "#21C400",
+        color: "#FFFFFF",
+        iconWidth: 42,
+        iconHeight: 42,
+    },
+];
