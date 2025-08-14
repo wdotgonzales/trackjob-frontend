@@ -19,7 +19,7 @@ const AuthenticatedTabNavigator = () => {
         tabBarShowLabel: false,
         tabBarStyle: {
             backgroundColor: "#052731",
-            height: 80, // Custom height (default is around 50-60)
+            height: 100, // Custom height (default is around 50-60)
             paddingBottom: 10, // Add bottom padding
             paddingTop: 10, // Add top padding
         }
