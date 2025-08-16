@@ -2,14 +2,20 @@ import HomePageScreen from "../screens/HomePageScreen"
 import SettingsScreen from "../screens/SettingsScreen"
 import AnalyticsScreen from "../screens/AnalyticsScreen"
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
+import { createNativeStackNavigator } from "@react-navigation/native-stack"
+
+// Import your new screen
+import SingleJobApplicationScreen from "../screens/SingleJobApplicationScreen"
 
 import { Foundation } from "@expo/vector-icons"
 import { MaterialIcons } from "@expo/vector-icons"
 import { Fontisto } from "@expo/vector-icons"
 
 const Tab = createBottomTabNavigator()
+const Stack = createNativeStackNavigator()
 
-const AuthenticatedTabNavigator = () => {
+// Create the tab navigator as a separate component
+const MainTabNavigator = () => {
   return (
     <Tab.Navigator
       screenOptions={{
@@ -19,9 +25,9 @@ const AuthenticatedTabNavigator = () => {
         tabBarShowLabel: false,
         tabBarStyle: {
             backgroundColor: "#052731",
-            height: 100, // Custom height (default is around 50-60)
-            paddingBottom: 10, // Add bottom padding
-            paddingTop: 10, // Add top padding
+            height: 100,
+            paddingBottom: 10,
+            paddingTop: 10,
         }
       }}
     >
@@ -53,6 +59,23 @@ const AuthenticatedTabNavigator = () => {
         }}
       />
     </Tab.Navigator>
+  )
+}
+
+// Main authenticated navigator that wraps the tab navigator
+const AuthenticatedTabNavigator = () => {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen 
+        name="MainTabs" 
+        component={MainTabNavigator} 
+      />
+      <Stack.Screen 
+        name="SingleJobApplication" 
+        component={SingleJobApplicationScreen}
+      />
+      {/* Add more screens here as needed */}
+    </Stack.Navigator>
   )
 }
 
