@@ -23,6 +23,9 @@ import JobApplicationCard from "../../components/JobApplicationCard";
 import CustomModal from "../../components/CustomModal";
 import { httpClient } from "../../services/httpClient";
 import { showToast } from "../../components/CustomToaster";
+import { useNavigation } from "@react-navigation/native";
+import { useFocusEffect } from "@react-navigation/native";
+import { useCallback } from "react";
 
 const DEFAULT_FILTERS = {
   page: 1,
@@ -37,6 +40,7 @@ const DEFAULT_FILTERS = {
 const HomePageScreen = () => {
   const dispatch = useDispatch();
   const { greeting } = useTimeGreeting();
+  const navigation = useNavigation();
 
   // Redux state
   const { 
@@ -63,11 +67,12 @@ const HomePageScreen = () => {
   const [currentFilters, setCurrentFilters] = useState(DEFAULT_FILTERS);
   const [showModal, setShowModal] = useState(false);
 
-  // Effects
-  useEffect(() => {
-    dispatch(fetchUserProfile());
-    setDefaultFilter();
-  }, []);
+  useFocusEffect(
+    useCallback(() => {
+      dispatch(fetchUserProfile());
+      setDefaultFilter();
+    }, [])
+  );
   
   useEffect(() => {
     if (jobApplicationCurrentParams) {
@@ -136,7 +141,9 @@ const HomePageScreen = () => {
   };
 
   const handleCardPress = (item) => {
-    console.log('Card pressed - ID:', item.id);
+    navigation.navigate('SingleJobApplication', {
+      job_application_id: item.id
+    });
   };
 
   const handleDelete = async () => {
