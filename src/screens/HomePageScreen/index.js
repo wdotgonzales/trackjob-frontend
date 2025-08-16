@@ -15,7 +15,7 @@ import { Image } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
 
 import { fetchUserProfile } from "../../features/profile/profileSlice";
-import { fetchJobApplication } from "../../features/jobApplication/jobApplication";
+import { fetchJobApplication } from "../../features/jobApplication/listJobApplicationSlice";
 import useTimeGreeting from "../../hooks/useTimeGreeting";
 import CustomLoader from "../../components/CustomLoader";
 import FilterComponent from "./component/FilterComponent";

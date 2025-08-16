@@ -15,7 +15,7 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { fetchJobApplication } from '../../../features/jobApplication/jobApplication';
+import { fetchJobApplication } from '../../../features/jobApplication/listJobApplicationSlice';
 import { jobApplicationStatusIconData } from "../data/contentData";
 import JobApplicationIconComponent from '../../../components/JobApplicationIconComponent';
 import { useState } from 'react';
