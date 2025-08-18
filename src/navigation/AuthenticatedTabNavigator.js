@@ -6,6 +6,9 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack"
 
 // Import your new screen
 import SingleJobApplicationScreen from "../screens/SingleJobApplicationScreen"
+import CreateJobApplicationScreen from "../screens/CreateJobApplicationScreen"
+import CreateJobApplicationReminderScreen from "../screens/CreateJobApplicationScreen/screens/CreateJobApplicationReminderScreen"
+import SuccessScreen from "../screens/CreateJobApplicationScreen/screens/SuccessScreen"
 
 import { Foundation } from "@expo/vector-icons"
 import { MaterialIcons } from "@expo/vector-icons"
@@ -73,6 +76,18 @@ const AuthenticatedTabNavigator = () => {
       <Stack.Screen 
         name="SingleJobApplication" 
         component={SingleJobApplicationScreen}
+      />
+      <Stack.Screen 
+        name="CreateJobApplication" 
+        component={CreateJobApplicationScreen}
+      />
+      <Stack.Screen 
+        name="CreateJobApplicationReminder"
+        component={CreateJobApplicationReminderScreen}
+      />
+      <Stack.Screen
+        name="CreateJobApplicationSuccessScreen"
+        component={SuccessScreen}
       />
       {/* Add more screens here as needed */}
     </Stack.Navigator>
