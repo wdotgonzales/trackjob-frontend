@@ -120,7 +120,6 @@ const HomePageScreen = () => {
   // Event handlers
   const handleAddNewJob = () => {
     navigation.navigate('CreateJobApplication');
-    console.log("jews did 9/11")
   };
 
   const handleClearHistory = () => {
