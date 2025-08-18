@@ -121,3 +121,91 @@ export const timeAgo = (date) => {
 
   return "just now";
 };
+
+/**
+ * Converts date and time strings into ISO 8601 PH (Asia/Manila) format
+ * @param {string} date - Date string in "MM/DD/YYYY" format
+ * @param {string} time - Time string in "hh:mm AM/PM" format
+ * @returns {string} - ISO string like "2025-10-17T22:43:00+08:00"
+ */
+export const convertToPHISOString = (date, time) => {
+  if (!date || !time) return "";
+
+  try {
+    // Parse date parts
+    const [month, day, year] = date.split("/").map(Number);
+
+    // Parse time parts
+    const timeMatch = time.match(/(\d{1,2}):(\d{2})\s?(AM|PM)/i);
+    if (!timeMatch) return "";
+
+    let [, hour, minute, period] = timeMatch;
+    hour = Number(hour);
+    minute = Number(minute);
+
+    // Convert to 24-hour format
+    if (period.toUpperCase() === "PM" && hour !== 12) {
+      hour += 12;
+    }
+    if (period.toUpperCase() === "AM" && hour === 12) {
+      hour = 0;
+    }
+
+    // Create a Date object in Asia/Manila time
+    const dateInPH = new Date(Date.UTC(year, month - 1, day, hour - 8, minute, 0));
+
+    // Format to ISO with PH offset (+08:00)
+    const pad = (n) => String(n).padStart(2, "0");
+    return (
+      `${dateInPH.getUTCFullYear()}-` +
+      `${pad(dateInPH.getUTCMonth() + 1)}-` +
+      `${pad(dateInPH.getUTCDate())}T` +
+      `${pad(dateInPH.getUTCHours() + 8)}:` +
+      `${pad(dateInPH.getUTCMinutes())}:00+08:00`
+    );
+  } catch {
+    return "";
+  }
+};
+
+
+/**
+ * Converts an ISO datetime string to "Mon. DD, YYYY, hh:mm AM/PM" format in PH time (UTC+8)
+ * @param {string|Date} isoString - The ISO datetime string (e.g., "2025-08-17T09:05:00.000Z")
+ * @returns {string} - Formatted date like "Aug. 17, 2025, 05:05 PM"
+ */
+export const formatISOToReadablePH = (isoString) => {
+  if (!isoString) return "";
+
+  try {
+    const dateObj = isoString instanceof Date ? isoString : new Date(isoString);
+    if (isNaN(dateObj.getTime())) return "";
+
+    // Force to Asia/Manila
+    const options = {
+      timeZone: "Asia/Manila",
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+    };
+
+    // Use Intl for correct PH conversion
+    const formatter = new Intl.DateTimeFormat("en-PH", options);
+    const parts = formatter.formatToParts(dateObj);
+
+    const month = parts.find(p => p.type === "month")?.value.replace(".", "") + ".";
+    const day = parts.find(p => p.type === "day")?.value;
+    const year = parts.find(p => p.type === "year")?.value;
+    const hour = parts.find(p => p.type === "hour")?.value.padStart(2, "0");
+    const minute = parts.find(p => p.type === "minute")?.value;
+    const period = parts.find(p => p.type === "dayPeriod")?.value.toUpperCase();
+
+    return `${month} ${day}, ${year}, ${hour}:${minute} ${period}`;
+  } catch {
+    return "";
+  }
+};
+
