@@ -53,6 +53,7 @@ const CustomSelectWorkArrangementStatus = ({
   selectedStatusId = null,
   handleSelectWorkArrangement,
   setSelectedWorkArrangementId,
+  isButtonHidden = false,
 }) => {
   const [tempSelectedId, setTempSelectedId] = useState(selectedStatusId);
   const [statusData, setStatusData] = useState(workArrangementStatusIconData);
@@ -140,17 +141,21 @@ const CustomSelectWorkArrangementStatus = ({
           />
 
           {/* Set Button */}
-          <TouchableOpacity
-            style={[
-              styles.setButton,
-              !tempSelectedId && styles.setButtonDisabled,
-            ]}
-            onPress={handleSetStatus}
-            disabled={!tempSelectedId}
-            activeOpacity={0.8}
-          >
-            <Text style={styles.setButtonText}>Set</Text>
-          </TouchableOpacity>
+          {
+            !isButtonHidden && (
+              <TouchableOpacity
+                style={[
+                  styles.setButton,
+                  !tempSelectedId && styles.setButtonDisabled,
+                ]}
+                onPress={handleSetStatus}
+                disabled={!tempSelectedId}
+                activeOpacity={0.8}
+              >
+                <Text style={styles.setButtonText}>Set</Text>
+            </TouchableOpacity>
+            )
+          }
         </View>
       </View>
     </Modal>

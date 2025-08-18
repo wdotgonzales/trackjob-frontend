@@ -82,6 +82,7 @@ const CustomSelectEmploymentTypeStatus = ({
   selectedStatusId = null,
   handleSelectEmploymentType,
   setSelectedEmploymentTypeId,
+  isButtonHidden = false,
 }) => {
   const [tempSelectedId, setTempSelectedId] = useState(selectedStatusId);
   const [statusData, setStatusData] = useState(employmentTypeStatusIconData);
@@ -169,17 +170,21 @@ const CustomSelectEmploymentTypeStatus = ({
           />
 
           {/* Set Button */}
-          <TouchableOpacity
-            style={[
-              styles.setButton,
-              !tempSelectedId && styles.setButtonDisabled,
-            ]}
-            onPress={handleSetStatus}
-            disabled={!tempSelectedId}
-            activeOpacity={0.8}
-          >
-            <Text style={styles.setButtonText}>Set</Text>
-          </TouchableOpacity>
+          {
+            !isButtonHidden && (
+              <TouchableOpacity
+              style={[
+                styles.setButton,
+                !tempSelectedId && styles.setButtonDisabled,
+              ]}
+              onPress={handleSetStatus}
+              disabled={!tempSelectedId}
+              activeOpacity={0.8}
+            >
+              <Text style={styles.setButtonText}>Set</Text>
+            </TouchableOpacity>
+            )
+          }
         </View>
       </View>
     </Modal>
