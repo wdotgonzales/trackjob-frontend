@@ -589,7 +589,7 @@ const SingleJobApplicationScreen = ({ navigation, route }) => {
                             </TouchableOpacity>
 
                             {/* Reminders */}
-                            <TouchableOpacity style={[styles.linkCard, {marginBottom: 50}]}>
+                            <TouchableOpacity style={[styles.linkCard, {marginBottom: 50}]} onPress={() => Alert.alert("Unavailable", "Coming Soon...")}>
                                 <View style={styles.linkRow}>
                                     <View style={styles.reminderIcon}>
                                         <Ionicons name="bulb" size={20} color="#F97009" />
