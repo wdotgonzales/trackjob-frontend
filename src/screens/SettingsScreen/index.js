@@ -12,7 +12,7 @@ import { fetchUserProfile, clearUserProfile } from "../../features/profile/profi
 import CustomLoader from "../../components/CustomLoader";
 import { useSelector } from "react-redux";
 
-const SettingsScreen = () => {
+const SettingsScreen = ({ navigation, route }) => {
     const dispatch = useDispatch();
     const [refreshing, setRefreshing] = useState(false);
 
@@ -75,24 +75,24 @@ const SettingsScreen = () => {
                     <View style={styles.bodyContainer}> 
                         <Text style={styles.accountSettingsText}>Account Settings</Text>
 
-                        <Pressable onPress={() => console.log("hi")}>
+                        <Pressable onPress={() => navigation.navigate('EditPersonalInformation')}>
                             <View style={{flexDirection: "row", justifyContent: 'space-between', alignItems:"center"}}>
                                 <View style={{flexDirection: "row", gap: 10, alignItems: "center"}}> 
-                                    <FontAwesome name="user" size={40} color="white" />
-                                    <Text style={{fontSize: 16, color: "white", marginLeft: 10}}>Personal Information</Text>
+                                    <FontAwesome name="user" size={30} color="white" />
+                                    <Text style={{fontSize: 16, color: "white", marginLeft: 5}}>Personal Information</Text>
                                 </View>
-                                <AntDesign name="right" size={24} color="white" />
+                                <AntDesign name="right" size={20} color="white" />
                             </View>
                             <View style={styles.horizontalRule} />
                         </Pressable>
 
-                        <Pressable onPress={() => console.log("hi")}>
+                        <Pressable onPress={() => navigation.navigate('EnterNewPassword')}>
                             <View style={{flexDirection: "row", justifyContent: 'space-between', alignItems:"center"}}>
                                 <View style={{flexDirection: "row", gap: 10, alignItems: "center"}}> 
-                                    <MaterialIcons name="lock-person" size={38} color="white" />
-                                    <Text style={{fontSize: 16, color: "white", marginLeft: 1,}}>Change Password</Text>
+                                    <MaterialIcons name="lock-person" size={28} color="white" />
+                                    <Text style={{fontSize: 16, color: "white", marginLeft: 0,}}>Change Password</Text>
                                 </View>
-                                <AntDesign name="right" size={24} color="white" />
+                                <AntDesign name="right" size={20} color="white" />
                             </View>
                             <View style={styles.horizontalRule} />
                         </Pressable>   
@@ -137,8 +137,8 @@ const styles = StyleSheet.create({
     },
 
     profileAvatar: {
-        height: 180,
-        width: 180,
+        height: 140,
+        width: 140,
         borderRadius: 120,
         borderWidth: 2,
         borderColor: "white"
@@ -157,7 +157,7 @@ const styles = StyleSheet.create({
     },
 
     accountSettingsText: {
-        fontSize: 20,
+        fontSize: 17,
         fontWeight: "bold",
         color: "white",
         marginBottom: 20

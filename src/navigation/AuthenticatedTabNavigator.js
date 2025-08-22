@@ -9,6 +9,9 @@ import SingleJobApplicationScreen from "../screens/SingleJobApplicationScreen"
 import CreateJobApplicationScreen from "../screens/CreateJobApplicationScreen"
 import CreateJobApplicationReminderScreen from "../screens/CreateJobApplicationScreen/screens/CreateJobApplicationReminderScreen"
 import SuccessScreen from "../screens/CreateJobApplicationScreen/screens/SuccessScreen"
+import EditPersonalInformationScreen from "../screens/SettingsScreen/screens/EditPersonalInformationScreen"
+import EnterNewPasswordScreen from "../screens/SettingsScreen/screens/EnterNewPasswordScreen"
+import ChangePasswordOtpScreen from "../screens/SettingsScreen/screens/ChangePasswordOtpScreen";
 
 import { Foundation } from "@expo/vector-icons"
 import { MaterialIcons } from "@expo/vector-icons"
@@ -88,6 +91,18 @@ const AuthenticatedTabNavigator = () => {
       <Stack.Screen
         name="CreateJobApplicationSuccessScreen"
         component={SuccessScreen}
+      />
+      <Stack.Screen 
+        name="EditPersonalInformation"
+        component={EditPersonalInformationScreen}
+      />
+      <Stack.Screen
+        name="EnterNewPassword"
+        component={EnterNewPasswordScreen}
+      />
+      <Stack.Screen  
+        name="ChangePasswordOtp"
+        component={ChangePasswordOtpScreen}
       />
       {/* Add more screens here as needed */}
     </Stack.Navigator>
