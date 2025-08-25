@@ -237,17 +237,17 @@ npx expo start --web
 
 ---
 
-## 🏗 Project Structure
+## 📁 Project Structure
 
 ```
 trackjob-frontend-react-native/
-├── android/               # Android native code and configuration
-├── assets/                # Images, fonts, and other static assets
-├── src/                   # Main source code directory
-│   ├── app/              # App configuration and Redux store
-│   │   ├── App.js        # Main App component
-│   │   └── store.js      # Redux Toolkit store configuration
-│   ├── components/       # Reusable UI components
+├── 📱 android/               # Android native code and configuration
+├── 🎨 assets/                # Images, fonts, and other static assets
+├── 📂 src/                   # Main source code directory
+│   ├── ⚙️ app/              # App configuration and Redux store
+│   │   ├── App.js           # Main App component
+│   │   └── store.js         # Redux Toolkit store configuration
+│   ├── 🧩 components/       # Reusable UI components (13 components)
 │   │   ├── CustomButton.jsx              # Custom button component
 │   │   ├── CustomInput.jsx               # Custom input component
 │   │   ├── CustomLoader.jsx              # Loading indicator
@@ -258,28 +258,49 @@ trackjob-frontend-react-native/
 │   │   ├── CustomToaster.jsx             # Toast notifications
 │   │   ├── GoogleButton.jsx              # Google OAuth button
 │   │   ├── GoogleIcon.jsx                # Google icon component
-│   │   ├── JobApplicationCard.jsx        # Job application card
+│   │   ├── JobApplicationCard.jsx        # Job application card display
 │   │   ├── JobApplicationIconComponent.jsx # Job application icons
 │   │   └── RadioButton.jsx               # Radio button component
-│   ├── features/         # Feature-based modules
-│   │   ├── authentication/ # Authentication feature
-│   │   ├── jobApplication/ # Job application management
-│   │   └── profile/        # User profile management
-│   ├── hooks/            # Custom React hooks
-│   ├── navigation/       # Navigation configuration
-│   ├── screens/          # Screen components
-│   ├── services/         # API services and utilities
-│   ├── tests/            # Test files
-│   └── utils/            # Utility functions
-├── .env                  # Environment variables
-├── .env.example          # Environment variables example
-├── app.config.js         # Expo app configuration
-├── app.json             # Expo configuration
-├── eas.json             # Expo Application Services config
-├── index.js             # App entry point
-├── metro.config.js      # Metro bundler configuration
-├── package.json         # Dependencies and scripts
-└── README.md            # This file
+│   ├── 🔧 features/         # Feature-based Redux slices
+│   │   ├── authentication/  # Authentication feature
+│   │   │   └── authSlice.js
+│   │   ├── jobApplication/  # Job application management
+│   │   │   └── listJobApplicationSlice.js
+│   │   └── profile/         # User profile management
+│   │       └── profileSlice.js
+│   ├── 🪝 hooks/            # Custom React hooks (4 hooks)
+│   │   ├── useGoogleAuth.js      # Google authentication hook
+│   │   ├── useOtpCountdown.js    # OTP countdown functionality
+│   │   ├── useS3ImageUpload.js   # S3 image upload hook
+│   │   └── useTimeGreeting.js    # Time-based greeting hook
+│   ├── 🧭 navigation/       # Navigation configuration
+│   │   ├── AppNavigator.js           # Main app navigation
+│   │   └── AuthenticatedTabNavigator.js # Authenticated user navigation
+│   ├── 📱 screens/          # Screen components (9 screen folders)
+│   │   ├── AnalyticsScreen/
+│   │   ├── CreateJobApplicationScreen/
+│   │   ├── FeaturesScreen/
+│   │   ├── HomePageScreen/
+│   │   ├── LoginScreen/
+│   │   ├── RegisterScreen/
+│   │   ├── SettingsScreen/
+│   │   ├── SingleJobApplicationScreen/
+│   │   └── StartScreen/
+│   ├── 🌐 services/         # API services and HTTP client
+│   │   └── httpClient.js    # Centralized HTTP client
+│   ├── 🧪 tests/            # Test files
+│   │   └── env.test.js
+│   └── 🛠️ utils/            # Utility functions
+│       └── utils.js
+├── 🔧 Configuration Files
+│   ├── .env                 # Environment variables
+│   ├── .env.example         # Environment variables template
+│   ├── app.config.js        # Expo app configuration
+│   ├── app.json            # Expo configuration
+│   ├── eas.json            # Expo Application Services config
+│   ├── index.js            # App entry point
+│   ├── metro.config.js     # Metro bundler configuration
+│   └── package.json        # Dependencies and scripts
 ```
 
 ---
