@@ -42,7 +42,10 @@
     "react-redux": "^9.2.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.0"
+    "@babel/core": "^7.20.0",
+    "@react-native-community/cli": "^20.0.1",
+    "@react-native/metro-config": "^0.81.0",
+    "metro-config": "^0.83.1"
   },
   "private": true
 }

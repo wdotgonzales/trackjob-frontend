@@ -1,4 +1,4 @@
-package com.TrackJob.TrackJob
+package com.trackjob.trackjob
 
 import android.os.Build
 import android.os.Bundle

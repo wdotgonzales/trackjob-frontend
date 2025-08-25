@@ -20,6 +20,15 @@ def reactNativeAndroidDir = new File(
   "../android"
 )
 
+ext {
+    buildToolsVersion = "35.0.0"
+    minSdkVersion = 24
+    compileSdkVersion = 35
+    targetSdkVersion = 35
+    ndkVersion = "26.1.10909125"   // ✅ stable
+    kotlinVersion = "2.0.21"
+}
+
 allprojects {
   repositories {
     maven {
@@ -30,6 +39,17 @@ allprojects {
     google()
     mavenCentral()
     maven { url 'https://www.jitpack.io' }
+  }
+}
+
+subprojects { subproject ->
+  afterEvaluate {
+    if (subproject.hasProperty("android")) {
+      subproject.android {
+        ndkVersion "26.1.10909125"  // ✅ enforce
+        compileSdkVersion 35
+      }
+    }
   }
 }
 

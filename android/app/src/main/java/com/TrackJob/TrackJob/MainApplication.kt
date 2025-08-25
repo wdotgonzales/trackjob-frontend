@@ -1,4 +1,4 @@
-package com.TrackJob.TrackJob
+package com.trackjob.trackjob
 
 import android.app.Application
 import android.content.res.Configuration
