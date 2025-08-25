@@ -62,23 +62,11 @@ TrackJob supports comprehensive application status monitoring with 9 distinct st
 - **Date Range Filtering** - Filter applications by submission dates
 - **Real-time Results** - Instant filtering with pagination support
 
-### 🔔 Smart Reminder System
-- **Custom Reminders** - Set personalized reminders for each application
-- **Flexible Scheduling** - Schedule reminders for follow-ups, interviews, and deadlines
-- **Bulk Reminder Creation** - Create multiple reminders simultaneously
-- **Enable/Disable Control** - Toggle reminders on/off as needed
-
 ### 🔐 Security & Authentication
 - **JWT Authentication** - Secure token-based authentication system
 - **OAuth 2.0 Integration** - Google Sign-In support for seamless access
 - **Email Verification** - Secure account verification process
 - **Password Reset** - Self-service password recovery
-
-### 🛡️ Data Management
-- **Bulk Operations** - Delete all applications or create multiple reminders at once
-- **Data Export/Import** - Backup and restore your application data
-- **Profile Management** - Update personal information and profile pictures
-- **Cloud Storage Integration** - AWS S3 integration for file uploads
 
 ### 🏗️ Architecture & State Management
 - **Redux Toolkit (RTK)** - Modern Redux with simplified boilerplate and built-in best practices
@@ -86,12 +74,6 @@ TrackJob supports comprehensive application status monitoring with 9 distinct st
 - **Feature-based Structure** - Organized by feature modules (auth, jobApplication, profile)
 - **Custom Components** - Reusable UI components with consistent styling
 - **Service Layer** - API integration and data fetching utilities
-
-### 📱 Cross-Platform Experience
-- **iOS & Android Native** - Full native experience on both platforms
-- **Web Progressive App** - Access through web browsers with PWA features
-- **Real-time Sync** - Data synchronization across all devices
-- **Offline Capability** - Limited functionality available offline
 
 ## 🚀 Getting Started
 
