@@ -1,6 +1,6 @@
 # 📱 TrackJob Mobile App
 
-A modern React Native mobile application for tracking and managing job applications, built with Redux Toolkit for efficient state management and comprehensive backend integration.
+TrackJob is a mobile app built with React Native that helps you keep track of your job applications. It allows you to monitor the progress of each application and view important details such as the job title, company name, work arrangement (remote, hybrid, or onsite), application status, and employment type. With TrackJob, staying organized throughout your job search becomes easier and more efficient.
 
 ## 📸 Screenshots
 
